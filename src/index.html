@@ -334,7 +334,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ccircle cx='80' cy='80' r='80' fill='%23e8f0eb'/%3E%3Ctext x='80' y='95' text-anchor='middle' font-size='70' font-family='serif'%3E🐶%3C/text%3E%3C/svg%3E" alt="PEPA Logo" class="hero-logo" id="hero-logo">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ccircle cx='80' cy='80' r='80' fill='%23e8f0eb'/%3E%3Ctext x='80' y='95' text-anchor='middle' font-size='70' font-family='serif'%3E🐶%3C/text%3E%3C/svg%3E" alt="לוגו סלון החיות של לי" class="hero-logo" id="hero-logo">
 
     <div class="hero-text-block">
         <h1 id="hero-title">סלון החיות של לי 🐾</h1>
@@ -436,10 +436,8 @@
 </footer>
 
 <script>
-    const busyDays = {
-      "2025-6": [3,7,10,14,17,21,24,28],
-      "2025-7": [1,4,8,11,15,18,22,25,29],
-    };
+    let busySet = new Set();
+    function pad(n){ return (n<10?'0':'')+n; }
     const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
     let currentDate = new Date();
 
@@ -452,8 +450,6 @@
       const today = new Date();
       const firstDay = new Date(y, m, 1).getDay();
       const daysInMonth = new Date(y, m+1, 0).getDate();
-      const key = y + '-' + (m+1);
-      const busy = busyDays[key] || [];
 
       for (let i=0; i<firstDay; i++) {
         const el = document.createElement('div');
@@ -464,7 +460,7 @@
         const el = document.createElement('div');
         let cls = 'cal-day';
         if (d===today.getDate() && m===today.getMonth() && y===today.getFullYear()) cls += ' today';
-        else if (busy.includes(d)) cls += ' busy';
+        else if (busySet.has(y+'-'+pad(m+1)+'-'+pad(d))) cls += ' busy';
         el.className = cls;
         el.textContent = d;
         grid.appendChild(el);
@@ -476,20 +472,21 @@
       renderCalendar();
     }
 
-    renderCalendar();
+    fetch('/content/calendar.json').then(function(r){return r.json();}).then(function(d){
+      busySet = new Set((d.busy_days)||[]);
+      renderCalendar();
+    }).catch(function(){ renderCalendar(); });
 </script>
 <script>
-fetch('/content/homepage.json').then(r=>r.json()).then(d=>{
+fetch('/content/homepage.json').then(function(r){return r.json();}).then(function(d){
   var set=function(id,v){var e=document.getElementById(id); if(e&&v)e.textContent=v;};
-  set('hero-title', d.hero_title);
-  set('hero-subtitle', d.hero_subtitle);
+  set('hero-title', d.hero_title); set('hero-subtitle', d.hero_subtitle);
   if(d.phone_display){
-    var digits = d.phone_display.replace(/[^0-9]/g,'');
-    var intl = digits.replace(/^0/, '972');
+    var digits=d.phone_display.replace(/[^0-9]/g,''); var intl=digits.replace(/^0/,'972');
     document.querySelectorAll('.js-phone').forEach(function(e){e.textContent=d.phone_display;});
     document.querySelectorAll('a.js-tel').forEach(function(a){a.href='tel:'+digits;});
     document.querySelectorAll('a.js-wa').forEach(function(a){
-      var q = a.getAttribute('href')&&a.getAttribute('href').indexOf('?')>-1 ? a.getAttribute('href').slice(a.getAttribute('href').indexOf('?')) : '';
+      var h=a.getAttribute('href'); var q=(h&&h.indexOf('?')>-1)?h.slice(h.indexOf('?')):'';
       a.href='https://wa.me/'+intl+q;
     });
   }

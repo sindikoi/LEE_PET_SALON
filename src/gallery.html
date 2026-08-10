@@ -169,13 +169,11 @@ fetch('/content/gallery.json').then(function(r){return r.json();}).then(function
   var grid=document.getElementById('gallery-grid'); if(!grid)return; grid.innerHTML='';
   (d.items||[]).forEach(function(g){
     var c=document.createElement('div'); c.className='gallery-card';
-    var bImg=g.before_image||'https://via.placeholder.com/150?text=לפני';
-    var aImg=g.after_image||'https://via.placeholder.com/150?text=אחרי';
-    c.innerHTML='<h3>'+(g.title||'')+'</h3>'+
-      '<div class="before-after-container">'+
-        '<div class="img-wrapper"><span>לפני</span><img src="'+bImg+'" alt="לפני" class="gallery-img"></div>'+
-        '<div class="img-wrapper"><span>אחרי</span><img src="'+aImg+'" alt="אחרי" class="gallery-img"></div>'+
-      '</div>';
+    var b=g.before_image||'https://via.placeholder.com/150?text=לפני';
+    var a=g.after_image||'https://via.placeholder.com/150?text=אחרי';
+    c.innerHTML='<h3>'+(g.title||'')+'</h3><div class="before-after-container">'+
+      '<div class="img-wrapper"><span>לפני</span><img src="'+b+'" alt="לפני" class="gallery-img"></div>'+
+      '<div class="img-wrapper"><span>אחרי</span><img src="'+a+'" alt="אחרי" class="gallery-img"></div></div>';
     grid.appendChild(c);
   });
 }).catch(function(){});

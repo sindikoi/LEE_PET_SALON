@@ -1,4 +1,3 @@
-# מפרסם את תיקיית src בשורש האתר.
-# מתקן גם את ה"Page not found" בדף הבית, וגם גורם ל-/images ו-/content לעבוד.
+# מפרסם את תיקיית src בשורש האתר (מתקן גם "Page not found" וגם /images ו-/content).
 [build]
   publish = "src"

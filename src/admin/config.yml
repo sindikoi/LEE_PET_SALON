@@ -1,8 +1,8 @@
 # ============================================================
 #  שים לב: את הבלוק הזה (backend) צריך להחליף!
-#  אחרי שתירשם ל-DecapBridge ותוסיף את האתר, הוא ייצר לך
-#  בלוק backend מוכן. מחק את מה שכאן והדבק את שלו במקום.
-#  (עד שתעשה את זה — ההתחברות לא תעבוד, וזה נורמלי.)
+#  אחרי שתירשם ל-DecapBridge ותוסיף את האתר (במצב Classic —
+#  מייל+סיסמה), הוא ייצר לך בלוק backend מוכן. מחק את מה שכאן
+#  והדבק את שלו במקום. עד שתעשה את זה — ההתחברות לא תעבוד.
 # ------------------------------------------------------------
 backend:
   name: git-gateway
@@ -10,16 +10,10 @@ backend:
   branch: main
 # ============================================================
 
-# איפה נשמרות תמונות שהיא מעלה
 media_folder: "src/images"
 public_folder: "/images"
 
-# ניתן להעלות מספר קבצים בבת אחת
-media_library:
-  name: default
-
 collections:
-  # ---------- דף הבית ----------
   - name: "homepage"
     label: "🏠 דף הבית — טקסטים ופרטי קשר"
     delete: false
@@ -32,11 +26,10 @@ collections:
         fields:
           - { label: "כותרת ראשית", name: "hero_title", widget: "string" }
           - { label: "משפט מתחת לכותרת", name: "hero_subtitle", widget: "text" }
-          - { label: "טלפון להצגה", name: "phone_display", widget: "string", hint: "לדוגמה: 052-294-1899 — מעדכן גם את הוואטסאפ והחיוג אוטומטית" }
+          - { label: "טלפון להצגה", name: "phone_display", widget: "string", hint: "לדוגמה: 052-294-1899 — מעדכן גם וואטסאפ וחיוג אוטומטית" }
           - { label: "כתובת הסלון", name: "address", widget: "string" }
           - { label: "קישור לאינסטגרם", name: "instagram_url", widget: "string" }
 
-  # ---------- מוצרים ----------
   - name: "products"
     label: "🛍️ מוצרים בחנות"
     delete: false
@@ -58,7 +51,6 @@ collections:
               - { label: "מחיר", name: "price", widget: "string", hint: "לדוגמה: ₪65" }
               - { label: "תמונת מוצר", name: "image", widget: "image", required: false }
 
-  # ---------- גלריה ----------
   - name: "gallery"
     label: "✨ גלריה — לפני ואחרי"
     delete: false
@@ -78,3 +70,19 @@ collections:
               - { label: "כותרת / שם החיה", name: "title", widget: "string" }
               - { label: "תמונת לפני", name: "before_image", widget: "image", required: false }
               - { label: "תמונת אחרי", name: "after_image", widget: "image", required: false }
+
+  - name: "calendar"
+    label: "📅 יומן — ימים תפוסים"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "calendar"
+        label: "ימים שהסלון תפוס"
+        file: "src/content/calendar.json"
+        fields:
+          - label: "ימים תפוסים"
+            name: "busy_days"
+            label_singular: "יום תפוס"
+            widget: "list"
+            field: { label: "תאריך", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }

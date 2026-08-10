@@ -1,14 +1,6 @@
 {
   "items": [
-    {
-      "title": "תספורת לפודל שוקו 🐩",
-      "before_image": "",
-      "after_image": ""
-    },
-    {
-      "title": "טיפול ודילול פרווה 🐶",
-      "before_image": "",
-      "after_image": ""
-    }
+    { "title": "תספורת לפודל שוקו 🐩", "before_image": "", "after_image": "" },
+    { "title": "טיפול ודילול פרווה 🐶", "before_image": "", "after_image": "" }
   ]
 }
