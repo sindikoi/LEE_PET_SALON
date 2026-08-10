@@ -1,0 +1,4 @@
+# מפרסם את תיקיית src בשורש האתר.
+# מתקן גם את ה"Page not found" בדף הבית, וגם גורם ל-/images ו-/content לעבוד.
+[build]
+  publish = "src"
