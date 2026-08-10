@@ -337,11 +337,11 @@
     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ccircle cx='80' cy='80' r='80' fill='%23e8f0eb'/%3E%3Ctext x='80' y='95' text-anchor='middle' font-size='70' font-family='serif'%3E🐶%3C/text%3E%3C/svg%3E" alt="PEPA Logo" class="hero-logo" id="hero-logo">
 
     <div class="hero-text-block">
-        <h1>סלון החיות של לי 🐾</h1>
-        <p>טיפוח מקצועי ואוהב לכלבים, כי לכל חיה מגיע להרגיש יפה ומטופחת!</p>
+        <h1 id="hero-title">סלון החיות של לי 🐾</h1>
+        <p id="hero-subtitle">טיפוח מקצועי ואוהב לכלבים, כי לכל חיה מגיע להרגיש יפה ומטופחת!</p>
     </div>
     <div class="hero-btns">
-        <a href="https://wa.me/972522941899" class="btn-main" target="_blank">💬 קבע תור בוואטסאפ</a>
+        <a href="https://wa.me/972522941899" class="btn-main js-wa" target="_blank">💬 קבע תור בוואטסאפ</a>
         <a href="#calendar" class="btn-outline">📅 בדוק זמינות</a>
     </div>
 </section>
@@ -376,7 +376,7 @@
 
 <!-- INSTAGRAM LINK -->
 <div style="text-align: center; margin: 1.5rem 0;">
-    <a href="https://www.instagram.com/lee_pets_salon/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.25);">
+    <a href="https://www.instagram.com/lee_pets_salon/" target="_blank" class="js-instagram" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.25);">
         <span>📸</span> לצפייה בעבודות באינסטגרם
     </a>
 </div>
@@ -396,7 +396,7 @@
         </div>
         <div class="cal-grid" id="cal-grid"></div>
         <div style="text-align:center; margin-top:1.5rem">
-            <a href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" class="btn-main" target="_blank">
+            <a href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" class="btn-main js-wa" target="_blank">
                 💬 קבע תור עכשיו בוואטסאפ
             </a>
         </div>
@@ -408,30 +408,30 @@
     <h2 class="section-title">צרו קשר 💌</h2>
     <p class="section-sub">שמחים לענות על כל שאלה!</p>
     <div class="contact-cards">
-        <a class="contact-card" href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" target="_blank">
+        <a class="contact-card js-wa" href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" target="_blank">
             <div class="icon">💬</div>
             <h3>וואטסאפ</h3>
-            <p>052-294-1899<br>זמינה לכל שאלה</p>
+            <p><span class="js-phone">052-294-1899</span><br>זמינה לכל שאלה</p>
         </a>
-        <a class="contact-card" href="tel:0522941899">
+        <a class="contact-card js-tel" href="tel:0522941899">
             <div class="icon">📞</div>
             <h3>טלפון</h3>
-            <p>052-294-1899<br>התקשרי ישירות</p>
+            <p><span class="js-phone">052-294-1899</span><br>התקשרי ישירות</p>
         </a>
         <div class="contact-card">
             <div class="icon">📍</div>
             <h3>מיקום</h3>
-            <p>המסחר 2 רובע א' אשדוד</p>
+            <p class="js-address">המסחר 2 רובע א' אשדוד</p>
         </div>
     </div>
 </section>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" class="wa-float" target="_blank" title="שלחי הודעה בוואטסאפ">💬</a>
+<a href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" class="wa-float js-wa" target="_blank" title="שלחי הודעה בוואטסאפ">💬</a>
 
 <!-- FOOTER -->
 <footer>
-    <p>🐾 <strong>סלון החיות של לי — Lee pets salon</strong> | 052-294-1899</p>
+    <p>🐾 <strong>סלון החיות של לי — Lee pets salon</strong> | <span class="js-phone">052-294-1899</span></p>
     <p style="margin-top:0.5rem">כל הזכויות שמורות © 2025</p>
 </footer>
 
@@ -477,6 +477,25 @@
     }
 
     renderCalendar();
+</script>
+<script>
+fetch('/content/homepage.json').then(r=>r.json()).then(d=>{
+  var set=function(id,v){var e=document.getElementById(id); if(e&&v)e.textContent=v;};
+  set('hero-title', d.hero_title);
+  set('hero-subtitle', d.hero_subtitle);
+  if(d.phone_display){
+    var digits = d.phone_display.replace(/[^0-9]/g,'');
+    var intl = digits.replace(/^0/, '972');
+    document.querySelectorAll('.js-phone').forEach(function(e){e.textContent=d.phone_display;});
+    document.querySelectorAll('a.js-tel').forEach(function(a){a.href='tel:'+digits;});
+    document.querySelectorAll('a.js-wa').forEach(function(a){
+      var q = a.getAttribute('href')&&a.getAttribute('href').indexOf('?')>-1 ? a.getAttribute('href').slice(a.getAttribute('href').indexOf('?')) : '';
+      a.href='https://wa.me/'+intl+q;
+    });
+  }
+  if(d.address){document.querySelectorAll('.js-address').forEach(function(e){e.textContent=d.address;});}
+  if(d.instagram_url){document.querySelectorAll('a.js-instagram').forEach(function(a){a.href=d.instagram_url;});}
+}).catch(function(){});
 </script>
 </body>
 </html>

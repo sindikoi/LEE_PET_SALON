@@ -157,42 +157,28 @@
     <h1 class="section-title">✨ לפני ואחרי</h1>
     <p class="section-sub">תוצאות הטיפוח המהפנטות של הלקוחות המתוקים שלנו</p>
 
-    <div class="gallery-grid">
-        <!-- כרטיסייה 1 -->
-        <div class="gallery-card">
-            <h3>תספורת לפודל שוקו 🐩</h3>
-            <div class="before-after-container">
-                <div class="img-wrapper">
-                    <span>לפני</span>
-                    <img src="images/before1.jpg" alt="לפני" class="gallery-img" onerror="this.src='https://via.placeholder.com/150?text=לפני'">
-                </div>
-                <div class="img-wrapper">
-                    <span>אחרי</span>
-                    <img src="images/after1.jpg" alt="אחרי" class="gallery-img" onerror="this.src='https://via.placeholder.com/150?text=אחרי'">
-                </div>
-            </div>
-        </div>
-
-        <!-- כרטיסייה 2 -->
-        <div class="gallery-card">
-            <h3>טיפול ודילול פרווה 🐶</h3>
-            <div class="before-after-container">
-                <div class="img-wrapper">
-                    <span>לפני</span>
-                    <img src="images/before2.jpg" alt="לפני" class="gallery-img" onerror="this.src='https://via.placeholder.com/150?text=לפני'">
-                </div>
-                <div class="img-wrapper">
-                    <span>אחרי</span>
-                    <img src="images/after2.jpg" alt="אחרי" class="gallery-img" onerror="this.src='https://via.placeholder.com/150?text=אחרי'">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
 </section>
 
 <footer>
     <p>🐾 סלון החיות של לי | 052-294-1899</p>
 </footer>
 
+<script>
+fetch('/content/gallery.json').then(function(r){return r.json();}).then(function(d){
+  var grid=document.getElementById('gallery-grid'); if(!grid)return; grid.innerHTML='';
+  (d.items||[]).forEach(function(g){
+    var c=document.createElement('div'); c.className='gallery-card';
+    var bImg=g.before_image||'https://via.placeholder.com/150?text=לפני';
+    var aImg=g.after_image||'https://via.placeholder.com/150?text=אחרי';
+    c.innerHTML='<h3>'+(g.title||'')+'</h3>'+
+      '<div class="before-after-container">'+
+        '<div class="img-wrapper"><span>לפני</span><img src="'+bImg+'" alt="לפני" class="gallery-img"></div>'+
+        '<div class="img-wrapper"><span>אחרי</span><img src="'+aImg+'" alt="אחרי" class="gallery-img"></div>'+
+      '</div>';
+    grid.appendChild(c);
+  });
+}).catch(function(){});
+</script>
 </body>
 </html>

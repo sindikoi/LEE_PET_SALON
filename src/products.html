@@ -143,28 +143,23 @@
     <h1 class="section-title">🛍️ המוצרים שלנו</h1>
     <p class="section-sub">מוצרי טיפוח ואיכות מומלצים לכלבים</p>
 
-    <div class="products-grid">
-        <!-- מוצר 1 -->
-        <div class="product-card">
-            <img src="images/shampoo.jpg" alt="שמפו לכלבים" class="product-img" onerror="this.src='https://via.placeholder.com/200?text=תמונת+מוצר'">
-            <h3>שמפו היפואלרגני</h3>
-            <p>שמפו עדין ומזין לכל סוגי הפרווה</p>
-            <div class="price">₪65</div>
-        </div>
-
-        <!-- מוצר 2 -->
-        <div class="product-card">
-            <img src="images/brush.jpg" alt="מברשת" class="product-card-img product-img" onerror="this.src='https://via.placeholder.com/200?text=תמונת+מוצר'">
-            <h3>מברשת הברשה מקצועית</h3>
-            <p>להתרת קשרים ושמירה על פרווה רכה</p>
-            <div class="price">₪45</div>
-        </div>
-    </div>
+    <div class="products-grid" id="products-grid"></div>
 </section>
 
 <footer>
     <p>🐾 סלון החיות של לי | 052-294-1899</p>
 </footer>
 
+<script>
+fetch('/content/products.json').then(function(r){return r.json();}).then(function(d){
+  var grid=document.getElementById('products-grid'); if(!grid)return; grid.innerHTML='';
+  (d.items||[]).forEach(function(p){
+    var c=document.createElement('div'); c.className='product-card';
+    var img=p.image?('<img src="'+p.image+'" alt="'+(p.title||'')+'" class="product-img" onerror="this.src=\'https://via.placeholder.com/200?text=תמונת+מוצר\'">'):('<img src="https://via.placeholder.com/200?text=תמונת+מוצר" alt="'+(p.title||'')+'" class="product-img">');
+    c.innerHTML=img+'<h3>'+(p.title||'')+'</h3><p>'+(p.description||'')+'</p><div class="price">'+(p.price||'')+'</div>';
+    grid.appendChild(c);
+  });
+}).catch(function(){});
+</script>
 </body>
 </html>

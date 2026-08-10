@@ -1,41 +1,80 @@
+# ============================================================
+#  שים לב: את הבלוק הזה (backend) צריך להחליף!
+#  אחרי שתירשם ל-DecapBridge ותוסיף את האתר, הוא ייצר לך
+#  בלוק backend מוכן. מחק את מה שכאן והדבק את שלו במקום.
+#  (עד שתעשה את זה — ההתחברות לא תעבוד, וזה נורמלי.)
+# ------------------------------------------------------------
 backend:
   name: git-gateway
+  repo: sindikoi/LEE_PET_SALON
   branch: main
+# ============================================================
 
-media_folder: "images"
-public_folder: "images"
+# איפה נשמרות תמונות שהיא מעלה
+media_folder: "src/images"
+public_folder: "/images"
+
+# ניתן להעלות מספר קבצים בבת אחת
+media_library:
+  name: default
 
 collections:
-  - name: "gallery"
-    label: "לפני ואחרי (גלריה)"
-    folder: "content/gallery"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "כותרת / שם החיה", name: "title", widget: "string" }
-      - { label: "תמונת לפני", name: "before_image", widget: "image" }
-      - { label: "תמונת אחרי", name: "after_image", widget: "image" }
-
-  - name: "products"
-    label: "מוצרים בחנות"
-    folder: "content/products"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "שם המוצר", name: "title", widget: "string" }
-      - { label: "תיאור קצר", name: "description", widget: "text" }
-      - { label: "מחיר", name: "price", widget: "string" }
-      - { label: "תמונת מוצר", name: "image", widget: "image" }
-
-  - name: "site_content"
-    label: "טקסטים ותוכן האתר"
+  # ---------- דף הבית ----------
+  - name: "homepage"
+    label: "🏠 דף הבית — טקסטים ופרטי קשר"
+    delete: false
+    editor:
+      preview: false
     files:
-      - name: "homepage_content"
-        label: "עריכת טקסטים בדף הבית"
-        file: "content/homepage.json"
+      - name: "homepage"
+        label: "עריכת דף הבית"
+        file: "src/content/homepage.json"
         fields:
           - { label: "כותרת ראשית", name: "hero_title", widget: "string" }
-          - { label: "תת-כותרת / תיאור קצר", name: "hero_subtitle", widget: "text" }
-          - { label: "אודות הסלון", name: "about_text", widget: "text" }
-          - { label: "מספר טלפון ליצירת קשר", name: "phone_number", widget: "string" }
+          - { label: "משפט מתחת לכותרת", name: "hero_subtitle", widget: "text" }
+          - { label: "טלפון להצגה", name: "phone_display", widget: "string", hint: "לדוגמה: 052-294-1899 — מעדכן גם את הוואטסאפ והחיוג אוטומטית" }
           - { label: "כתובת הסלון", name: "address", widget: "string" }
+          - { label: "קישור לאינסטגרם", name: "instagram_url", widget: "string" }
+
+  # ---------- מוצרים ----------
+  - name: "products"
+    label: "🛍️ מוצרים בחנות"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "products"
+        label: "רשימת המוצרים"
+        file: "src/content/products.json"
+        fields:
+          - label: "מוצרים"
+            name: "items"
+            widget: "list"
+            label_singular: "מוצר"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "שם המוצר", name: "title", widget: "string" }
+              - { label: "תיאור קצר", name: "description", widget: "text" }
+              - { label: "מחיר", name: "price", widget: "string", hint: "לדוגמה: ₪65" }
+              - { label: "תמונת מוצר", name: "image", widget: "image", required: false }
+
+  # ---------- גלריה ----------
+  - name: "gallery"
+    label: "✨ גלריה — לפני ואחרי"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "gallery"
+        label: "תמונות לפני / אחרי"
+        file: "src/content/gallery.json"
+        fields:
+          - label: "כרטיסיות"
+            name: "items"
+            widget: "list"
+            label_singular: "כרטיסייה"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "כותרת / שם החיה", name: "title", widget: "string" }
+              - { label: "תמונת לפני", name: "before_image", widget: "image", required: false }
+              - { label: "תמונת אחרי", name: "after_image", widget: "image", required: false }
