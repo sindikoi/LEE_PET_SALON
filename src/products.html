@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מוצרים — סלון החיות של לי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --sage-pale: #f7faf8;
+          --sage-deep: #4d6658;
+          --sage-light: #e8f0eb;
+          --text: #334239;
+          --text-muted: #6e8275;
+          --white: #ffffff;
+          --radius: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+          font-family: 'Heebo', sans-serif;
+          background: var(--sage-pale);
+          color: var(--text);
+          direction: rtl;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+          background: var(--white);
+          padding: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-shadow: 0 2px 16px rgba(155,183,165,0.15);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+        .nav-logo {
+          font-family: 'Fredoka One', cursive;
+          font-size: 1.2rem;
+          color: var(--sage-deep);
+          text-decoration: none;
+        }
+        .nav-links {
+          display: flex;
+          gap: 1rem;
+          list-style: none;
+        }
+        .nav-links a {
+          text-decoration: none;
+          color: var(--text-muted);
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+        .nav-links a:hover { color: var(--sage-deep); }
+
+        /* ===== CONTENT ===== */
+        section {
+          padding: 2.5rem 1rem;
+          flex: 1;
+        }
+        .section-title {
+          font-family: 'Fredoka One', cursive;
+          font-size: 2rem;
+          color: var(--sage-deep);
+          text-align: center;
+          margin-bottom: 0.4rem;
+        }
+        .section-sub {
+          text-align: center;
+          color: var(--text-muted);
+          margin-bottom: 2rem;
+          font-size: 1rem;
+        }
+
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.2rem;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        .product-card {
+          background: var(--white);
+          border-radius: var(--radius);
+          padding: 1.2rem;
+          text-align: center;
+          border: 1.5px solid var(--sage-light);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .product-img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-radius: 12px;
+          margin-bottom: 1rem;
+          background: var(--sage-pale);
+        }
+        .product-card h3 {
+          font-family: 'Fredoka One', cursive;
+          color: var(--sage-deep);
+          font-size: 1.2rem;
+          margin-bottom: 0.4rem;
+        }
+        .product-card p {
+          color: var(--text-muted);
+          font-size: 0.9rem;
+          margin-bottom: 0.8rem;
+        }
+        .price {
+          font-weight: 700;
+          color: var(--sage-deep);
+          font-size: 1.1rem;
+        }
+
+        footer {
+          background: var(--sage-deep);
+          color: rgba(255,255,255,0.8);
+          text-align: center;
+          padding: 1.5rem;
+          margin-top: auto;
+          font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-logo" href="index.html">🐶 Lee pets salon</a>
+    <ul class="nav-links">
+        <li><a href="index.html">בית</a></li>
+        <li><a href="products.html" style="color: var(--sage-deep); font-weight:700;">מוצרים</a></li>
+        <li><a href="gallery.html">תמונות</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h1 class="section-title">🛍️ המוצרים שלנו</h1>
+    <p class="section-sub">מוצרי טיפוח ואיכות מומלצים לכלבים</p>
+
+    <div class="products-grid">
+        <!-- מוצר 1 -->
+        <div class="product-card">
+            <img src="images/shampoo.jpg" alt="שמפו לכלבים" class="product-img" onerror="this.src='https://via.placeholder.com/200?text=תמונת+מוצר'">
+            <h3>שמפו היפואלרגני</h3>
+            <p>שמפו עדין ומזין לכל סוגי הפרווה</p>
+            <div class="price">₪65</div>
+        </div>
+
+        <!-- מוצר 2 -->
+        <div class="product-card">
+            <img src="images/brush.jpg" alt="מברשת" class="product-card-img product-img" onerror="this.src='https://via.placeholder.com/200?text=תמונת+מוצר'">
+            <h3>מברשת הברשה מקצועית</h3>
+            <p>להתרת קשרים ושמירה על פרווה רכה</p>
+            <div class="price">₪45</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>🐾 סלון החיות של לי | 052-294-1899</p>
+</footer>
+
+</body>
+</html>

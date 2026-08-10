@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סלון החיות של לי — Lee pets salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --sage: #9bb7a5;
+          --sage-light: #e8f0eb;
+          --sage-pale: #f7faf8;
+          --sage-deep: #4d6658;
+          --text: #334239;
+          --text-muted: #6e8275;
+          --white: #ffffff;
+          --radius: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+          font-family: 'Heebo', sans-serif;
+          background: var(--sage-pale);
+          color: var(--text);
+          direction: rtl;
+          overflow-x: hidden;
+          width: 100%;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+          background: var(--white);
+          padding: 1rem 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-shadow: 0 2px 16px rgba(155,183,165,0.15);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+        .nav-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-family: 'Fredoka One', cursive;
+          font-size: 1.3rem;
+          color: var(--sage-deep);
+          text-decoration: none;
+        }
+        .nav-links {
+          display: flex;
+          gap: 1rem;
+          list-style: none;
+        }
+        .nav-links a {
+          text-decoration: none;
+          color: var(--text-muted);
+          font-size: 0.9rem;
+          font-weight: 500;
+          transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--sage-deep); }
+
+        /* ===== HERO ===== */
+        .hero {
+          background: linear-gradient(135deg, #eaf2ed 0%, #f7faf8 50%, #e2ece5 100%);
+          padding: 4rem 1.5rem 3rem;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+        .hero-logo {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 5px solid var(--white);
+          box-shadow: 0 8px 32px rgba(77,102,88,0.15);
+          margin-bottom: 1.2rem;
+          animation: floatLogo 3s ease-in-out infinite;
+        }
+        @keyframes floatLogo {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+
+        .hero-text-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 0 auto 1.5rem;
+          text-align: center;
+        }
+        .hero h1 {
+          font-family: 'Fredoka One', cursive;
+          font-size: 2.8rem;
+          color: var(--sage-deep);
+          margin-bottom: 0.5rem;
+        }
+        .hero p {
+          font-size: 1.2rem;
+          color: var(--text-muted);
+          max-width: 500px;
+          line-height: 1.6;
+        }
+        .hero-btns {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+        .btn-main, .btn-outline {
+          padding: 0.85rem 1.8rem;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 1rem;
+          transition: all 0.2s;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+        .btn-main {
+          background: var(--sage-deep);
+          color: white;
+        }
+        .btn-main:hover { background: #3a4f43; transform: translateY(-2px); }
+        .btn-outline {
+          background: white;
+          color: var(--sage-deep);
+          border: 2px solid var(--sage-deep);
+        }
+        .btn-outline:hover { background: var(--sage-light); transform: translateY(-2px); }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 3.5rem 1.5rem; }
+        .section-title {
+          font-family: 'Fredoka One', cursive;
+          font-size: 2.2rem;
+          color: var(--sage-deep);
+          text-align: center;
+          margin-bottom: 0.4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+        .section-sub {
+          text-align: center;
+          color: var(--text-muted);
+          margin-bottom: 2rem;
+          font-size: 1.1rem;
+          display: block;
+        }
+
+        /* ===== SERVICES ===== */
+        .services { background: var(--white); }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .service-card {
+          background: var(--sage-pale);
+          border-radius: var(--radius);
+          padding: 2rem 1.5rem;
+          text-align: center;
+          border: 1.5px solid var(--sage-light);
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(77,102,88,0.1); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .service-card h3 {
+          font-family: 'Fredoka One', cursive;
+          color: var(--sage-deep);
+          font-size: 1.5rem;
+          margin-bottom: 0.4rem;
+        }
+        .service-card p {
+          font-size: 1rem;
+          color: var(--text-muted);
+          line-height: 1.5;
+        }
+
+        /* ===== CALENDAR ===== */
+        .calendar-section { background: var(--white); }
+        .cal-wrapper {
+          max-width: 650px;
+          margin: 0 auto;
+          background: var(--sage-pale);
+          border-radius: var(--radius);
+          padding: 1.5rem;
+          border: 1.5px solid var(--sage-light);
+        }
+        .cal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1.2rem;
+        }
+        .cal-header h3 {
+          font-family: 'Fredoka One', cursive;
+          color: var(--sage-deep);
+          font-size: 1.5rem;
+        }
+        .cal-nav {
+          background: var(--white);
+          border: 1.5px solid var(--sage-light);
+          color: var(--sage-deep);
+          border-radius: 50%;
+          width: 36px; height: 36px;
+          cursor: pointer;
+          font-size: 1.1rem;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .cal-days-header {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 4px;
+          text-align: center;
+          margin-bottom: 8px;
+        }
+        .cal-days-header span {
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: var(--text-muted);
+        }
+        .cal-grid {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 6px;
+        }
+        .cal-day {
+          aspect-ratio: 1;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.9rem;
+          cursor: pointer;
+          background: white;
+          border: 1.5px solid transparent;
+          position: relative;
+        }
+        .cal-day.empty { background: transparent; cursor: default; }
+        .cal-day.today { background: var(--sage-deep); color: white; font-weight: 700; }
+        .cal-day.busy { background: var(--sage-light); color: var(--sage-deep); }
+
+        /* ===== CONTACT ===== */
+        .contact { background: linear-gradient(135deg, #eaf2ed 0%, #f7faf8 100%); }
+        .contact-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 1.25rem;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        .contact-card {
+          background: white;
+          border-radius: var(--radius);
+          padding: 1.8rem 1.2rem;
+          text-align: center;
+          border: 1.5px solid var(--sage-light);
+          text-decoration: none;
+          color: var(--text);
+          transition: transform 0.2s;
+        }
+        .contact-card:hover { transform: translateY(-4px); }
+        .contact-card .icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .contact-card h3 { font-family: 'Fredoka One', cursive; color: var(--sage-deep); font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .contact-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* ===== WHATSAPP FLOAT & FOOTER ===== */
+        .wa-float {
+          position: fixed;
+          bottom: 1.5rem; left: 1.5rem;
+          background: #25D366; color: white;
+          width: 56px; height: 56px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 1.8rem;
+          box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+          text-decoration: none;
+          z-index: 200;
+        }
+        footer {
+          background: var(--sage-deep);
+          color: rgba(255,255,255,0.8);
+          text-align: center;
+          padding: 2rem;
+          font-size: 0.85rem;
+        }
+
+        /* ===== RESPONSIVE BREAKPOINTS ===== */
+        @media (max-width: 768px) {
+          nav { padding: 0.8rem 1rem; }
+          .nav-logo { font-size: 1.1rem; }
+          .nav-links { gap: 0.6rem; }
+          .nav-links a { font-size: 0.8rem; }
+          .hero h1 { font-size: 2.2rem; }
+          .hero p { font-size: 1rem; }
+          .hero-btns { flex-direction: column; width: 100%; }
+          .btn-main, .btn-outline { width: 100%; }
+          .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .services-grid { grid-template-columns: 1fr; }
+          .contact-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a class="nav-logo" href="index.html">
+        🐶 Lee pets salon
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">בית</a></li>
+        <li><a href="products.html">מוצרים</a></li>
+        <li><a href="gallery.html">תמונות</a></li>
+        <li><a href="#calendar">תורים</a></li>
+        <li><a href="#contact">צור קשר</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ccircle cx='80' cy='80' r='80' fill='%23e8f0eb'/%3E%3Ctext x='80' y='95' text-anchor='middle' font-size='70' font-family='serif'%3E🐶%3C/text%3E%3C/svg%3E" alt="PEPA Logo" class="hero-logo" id="hero-logo">
+
+    <div class="hero-text-block">
+        <h1>סלון החיות של לי 🐾</h1>
+        <p>טיפוח מקצועי ואוהב לכלבים, כי לכל חיה מגיע להרגיש יפה ומטופחת!</p>
+    </div>
+    <div class="hero-btns">
+        <a href="https://wa.me/972522941899" class="btn-main" target="_blank">💬 קבע תור בוואטסאפ</a>
+        <a href="#calendar" class="btn-outline">📅 בדוק זמינות</a>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <h2 class="section-title"><span>🌸</span> השירותים שלנו 🌸</h2>
+    <p class="section-sub">טיפוח מקצועי לכלבים</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">✂️</div>
+            <h3>תספורת</h3>
+            <p>תספורת מקצועית המותאמת לגזע ולסגנון הרצוי</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🛁</div>
+            <h3>אמבטיה</h3>
+            <p>שמפו איכותי, ייבוש ורחצה מלאה</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💅</div>
+            <h3>ציפורניים</h3>
+            <p>גיזום ציפורניים בטוח ומקצועי</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">✨</div>
+            <h3>גימור</h3>
+            <p>ריח, קשרים, ועיצוב שיער מיוחד</p>
+        </div>
+    </div>
+</section>
+
+<!-- INSTAGRAM LINK -->
+<div style="text-align: center; margin: 1.5rem 0;">
+    <a href="https://www.instagram.com/lee_pets_salon/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.25);">
+        <span>📸</span> לצפייה בעבודות באינסטגרם
+    </a>
+</div>
+
+<!-- CALENDAR -->
+<section class="calendar-section" id="calendar">
+    <h2 class="section-title">יומן תורים 📅</h2>
+    <p class="section-sub">ימים עם נקודה = תפוסים, ימים לבנים = פנויים</p>
+    <div class="cal-wrapper">
+        <div class="cal-header">
+            <button class="cal-nav" onclick="changeMonth(-1)">›</button>
+            <h3 id="cal-title"></h3>
+            <button class="cal-nav" onclick="changeMonth(1)">‹</button>
+        </div>
+        <div class="cal-days-header">
+            <span>א'</span><span>ב'</span><span>ג'</span><span>ד'</span><span>ה'</span><span>ו'</span><span>ש'</span>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div style="text-align:center; margin-top:1.5rem">
+            <a href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" class="btn-main" target="_blank">
+                💬 קבע תור עכשיו בוואטסאפ
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <h2 class="section-title">צרו קשר 💌</h2>
+    <p class="section-sub">שמחים לענות על כל שאלה!</p>
+    <div class="contact-cards">
+        <a class="contact-card" href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" target="_blank">
+            <div class="icon">💬</div>
+            <h3>וואטסאפ</h3>
+            <p>052-294-1899<br>זמינה לכל שאלה</p>
+        </a>
+        <a class="contact-card" href="tel:0522941899">
+            <div class="icon">📞</div>
+            <h3>טלפון</h3>
+            <p>052-294-1899<br>התקשרי ישירות</p>
+        </a>
+        <div class="contact-card">
+            <div class="icon">📍</div>
+            <h3>מיקום</h3>
+            <p>המסחר 2 רובע א' אשדוד</p>
+        </div>
+    </div>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/972522941899?text=שלום!%20אשמח%20לקבוע%20תור%20בסלון%20החיות%20של%20לי%20🐾" class="wa-float" target="_blank" title="שלחי הודעה בוואטסאפ">💬</a>
+
+<!-- FOOTER -->
+<footer>
+    <p>🐾 <strong>סלון החיות של לי — Lee pets salon</strong> | 052-294-1899</p>
+    <p style="margin-top:0.5rem">כל הזכויות שמורות © 2025</p>
+</footer>
+
+<script>
+    const busyDays = {
+      "2025-6": [3,7,10,14,17,21,24,28],
+      "2025-7": [1,4,8,11,15,18,22,25,29],
+    };
+    const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+    let currentDate = new Date();
+
+    function renderCalendar() {
+      const y = currentDate.getFullYear();
+      const m = currentDate.getMonth();
+      document.getElementById('cal-title').textContent = months[m] + ' ' + y;
+      const grid = document.getElementById('cal-grid');
+      grid.innerHTML = '';
+      const today = new Date();
+      const firstDay = new Date(y, m, 1).getDay();
+      const daysInMonth = new Date(y, m+1, 0).getDate();
+      const key = y + '-' + (m+1);
+      const busy = busyDays[key] || [];
+
+      for (let i=0; i<firstDay; i++) {
+        const el = document.createElement('div');
+        el.className = 'cal-day empty';
+        grid.appendChild(el);
+      }
+      for (let d=1; d<=daysInMonth; d++) {
+        const el = document.createElement('div');
+        let cls = 'cal-day';
+        if (d===today.getDate() && m===today.getMonth() && y===today.getFullYear()) cls += ' today';
+        else if (busy.includes(d)) cls += ' busy';
+        el.className = cls;
+        el.textContent = d;
+        grid.appendChild(el);
+      }
+    }
+
+    function changeMonth(dir) {
+      currentDate.setMonth(currentDate.getMonth() + dir);
+      renderCalendar();
+    }
+
+    renderCalendar();
+</script>
+</body>
+</html>
