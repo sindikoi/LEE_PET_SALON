@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+    <!-- מעביר קישורי איפוס סיסמה / הזמנה מדף הבית אל /admin/ אוטומטית (DecapBridge) -->
+    <script>
+        (function () {
+          var h = window.location.hash;
+          if (h && (h.indexOf('recovery_token=') !== -1 ||
+                    h.indexOf('invite_token=') !== -1 ||
+                    h.indexOf('confirmation_token=') !== -1 ||
+                    h.indexOf('email_change_token=') !== -1)) {
+            window.location.replace('/admin/' + h);
+          }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>סלון החיות של לי — Lee pets salon</title>
@@ -478,21 +490,21 @@
     }).catch(function(){ renderCalendar(); });
 </script>
 <script>
-fetch('/content/homepage.json').then(function(r){return r.json();}).then(function(d){
-  var set=function(id,v){var e=document.getElementById(id); if(e&&v)e.textContent=v;};
-  set('hero-title', d.hero_title); set('hero-subtitle', d.hero_subtitle);
-  if(d.phone_display){
-    var digits=d.phone_display.replace(/[^0-9]/g,''); var intl=digits.replace(/^0/,'972');
-    document.querySelectorAll('.js-phone').forEach(function(e){e.textContent=d.phone_display;});
-    document.querySelectorAll('a.js-tel').forEach(function(a){a.href='tel:'+digits;});
-    document.querySelectorAll('a.js-wa').forEach(function(a){
-      var h=a.getAttribute('href'); var q=(h&&h.indexOf('?')>-1)?h.slice(h.indexOf('?')):'';
-      a.href='https://wa.me/'+intl+q;
-    });
-  }
-  if(d.address){document.querySelectorAll('.js-address').forEach(function(e){e.textContent=d.address;});}
-  if(d.instagram_url){document.querySelectorAll('a.js-instagram').forEach(function(a){a.href=d.instagram_url;});}
-}).catch(function(){});
+    fetch('/content/homepage.json').then(function(r){return r.json();}).then(function(d){
+      var set=function(id,v){var e=document.getElementById(id); if(e&&v)e.textContent=v;};
+      set('hero-title', d.hero_title); set('hero-subtitle', d.hero_subtitle);
+      if(d.phone_display){
+        var digits=d.phone_display.replace(/[^0-9]/g,''); var intl=digits.replace(/^0/,'972');
+        document.querySelectorAll('.js-phone').forEach(function(e){e.textContent=d.phone_display;});
+        document.querySelectorAll('a.js-tel').forEach(function(a){a.href='tel:'+digits;});
+        document.querySelectorAll('a.js-wa').forEach(function(a){
+          var h=a.getAttribute('href'); var q=(h&&h.indexOf('?')>-1)?h.slice(h.indexOf('?')):'';
+          a.href='https://wa.me/'+intl+q;
+        });
+      }
+      if(d.address){document.querySelectorAll('.js-address').forEach(function(e){e.textContent=d.address;});}
+      if(d.instagram_url){document.querySelectorAll('a.js-instagram').forEach(function(a){a.href=d.instagram_url;});}
+    }).catch(function(){});
 </script>
 </body>
 </html>
